@@ -211,7 +211,7 @@ if st.session_state.script1_done:
         binary_A = morphology.remove_small_objects(binary_A.astype(bool), min_size=500)
         binary_A = morphology.dilation(binary_A, morphology.disk(6))
         binary_A = morphology.remove_small_holes(binary_A, area_threshold=5000)
-        binary_A = morphology.closing(binary_A, morphology.disk(6)
+        binary_A = morphology.closing(binary_A, morphology.disk(6))
         binary_A = (binary_A > 0).astype(np.uint8) * 255
 
         #Label connected regions in binary mask
