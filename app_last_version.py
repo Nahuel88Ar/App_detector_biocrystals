@@ -1034,14 +1034,21 @@ if st.session_state.script3_done:
 if st.session_state.script3_results:
     st.header("📦 Results")
 
-    for result3 in st.session_state.script3_results:
+    #for result3 in st.session_state.script3_results:
+    #    st.subheader(f"📁 {result3['bf_name']}")
+    #    st.image(result3["annotated_path"], caption="Segmented Image")
+    #    st.image(result3["hist_path_Areas"], caption="Areas Histogram")
+    #    st.image(result3["hist_A_path"], caption="Pixels Intensity Histogram")
+    for idx, result3 in enumerate(st.session_state.script3_results):
         st.subheader(f"📁 {result3['bf_name']}")
         st.image(result3["annotated_path"], caption="Segmented Image")
         st.image(result3["hist_path_Areas"], caption="Areas Histogram")
         st.image(result3["hist_A_path"], caption="Pixels Intensity Histogram")
 
+        #with open(result3["excel_path"], "rb") as f3:
+        #    st.download_button("📊 Download Dataset", f3, file_name=os.path.basename(result3["excel_path"]),key=f"download_button_{os.path.basename(result3['excel_path'])}")
         with open(result3["excel_path"], "rb") as f3:
-            st.download_button("📊 Download Dataset", f3, file_name=os.path.basename(result3["excel_path"]),key=f"download_button_{os.path.basename(result3['excel_path'])}")
+            st.download_button("📊 Download Dataset",f3,file_name=os.path.basename(result3["excel_path"]),key=f"download_button_{idx}_{os.path.basename(result3['excel_path'])}")
 
     with open(st.session_state.zip_path_3, "rb") as zf_3:
         st.download_button("🗂️ Download All Images and Histograms", zf_3, file_name="All_Images_histograms.zip")
