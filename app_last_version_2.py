@@ -525,7 +525,7 @@ if st.session_state.script1_results:
 
     for result1 in st.session_state.script1_results:
         st.subheader(f"📁 {result1['bf_name']}")
-        st.image(result1["annotated_img_path"], caption="Detections crystals")
+        st.image(result1["annotated_image_path"], caption="Detections crystals")
         st.image(result1["overlap_path"], caption="Correlation")
 
         with open(result1["excel_path"], "rb") as f1:
