@@ -416,15 +416,27 @@ if st.session_state.script1_done:
 
         # Generate a dataframe for crystals.
         df_mapping = pd.DataFrame(crystal_to_cell)
-        df_mapping = df_mapping[(df_mapping["Region_Area (µm²)"] < 10) & (df_mapping["Overlap (pixels)"] > 0)]
-        df_mapping["Associated_Cell_Count"] = df_mapping["Associated_Cell"].map(df_mapping["Associated_Cell"].value_counts())
-        total_distinct_cells = df_mapping["Associated_Cell"].nunique()
-        df_mapping["Total_Cells_with_crystals"] = total_distinct_cells
-        total_area_cr = df_mapping["Region_Area (µm²)"].sum()
-        total_row = ["","","","Total Area Crystals", total_area_cr,"",""]
+        
+        #df_mapping = df_mapping[(df_mapping["Region_Area (µm²)"] < 10) & (df_mapping["Overlap (pixels)"] > 0)]
+        #df_mapping["Associated_Cell_Count"] = df_mapping["Associated_Cell"].map(df_mapping["Associated_Cell"].value_counts())
+        #total_distinct_cells = df_mapping["Associated_Cell"].nunique()
+        #df_mapping["Total_Cells_with_crystals"] = total_distinct_cells
+        #total_area_cr = df_mapping["Region_Area (µm²)"].sum()
+        #total_row = ["","","","Total Area Crystals", total_area_cr,"",""]
             
         # Insert the total row at the end with index "Total"
-        df_mapping.loc["Total"] = total_row
+        #df_mapping.loc["Total"] = total_row
+
+        if not df_mapping.empty and "Region_Area (µm²)" in df_mapping.columns:
+            df_mapping = df_mapping[(df_mapping["Region_Area (µm²)"] < 10) & (df_mapping["Overlap (pixels)"] > 0)]
+            df_mapping["Associated_Cell_Count"] = df_mapping["Associated_Cell"].map(df_mapping["Associated_Cell"].value_counts())
+            total_distinct_cells = df_mapping["Associated_Cell"].nunique()
+            df_mapping["Total_Cells_with_crystals"] = total_distinct_cells
+            total_area_cr = df_mapping["Region_Area (µm²)"].sum()
+            total_row = ["", "", "", "Total Area Crystals", total_area_cr, "", ""]
+            df_mapping.loc["Total"] = total_row
+        else:
+            total_distinct_cells = 0
 
         # -Save cell-to-crystal list (for debugging or export) ---
         cell_crystal_df = pd.DataFrame([
