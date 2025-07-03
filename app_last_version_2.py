@@ -4,7 +4,7 @@
 # In[ ]:
 
 
-# ---------- Standard library imports ----------
+# ---------- Standard library imports -----------
 import os                    # For operating system file and folder handling
 import sys                   # For system-specific parameters and functions
 import json                  # For reading and writing JSON files
