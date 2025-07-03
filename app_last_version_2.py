@@ -535,7 +535,7 @@ if st.session_state.script1_results:
                 "🗂️ Download All Images and Histograms",
                 zf_1,
                 file_name="All_Images_histograms.zip",
-                key="download_zip_histograms"
+                key=f"download_zip_histograms_{idx}"
             )
 
         if "excel_path_2" in result1:
