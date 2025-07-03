@@ -448,7 +448,13 @@ if st.session_state.script1_done:
             for cell_label, crystals in cell_to_crystals.items()
         ])
         # Merge to generate a dataframe to view data together from cells and crystals.
-        merged_df = df_mapping.merge(region_area_df, left_on="Associated_Cell", right_on="Region_Label", how="inner")
+        #merged_df = df_mapping.merge(region_area_df, left_on="Associated_Cell", right_on="Region_Label", how="inner")
+
+        # Merge only if df_mapping has Associated_Cell
+        if not df_mapping.empty and "Associated_Cell" in df_mapping.columns:
+            merged_df = df_mapping.merge(region_area_df, left_on="Associated_Cell", right_on="Region_Label", how="inner")
+        else:
+            merged_df = pd.DataFrame()
 
         #  # Groups all datasets into a single dataset.
         grouped_xlsx_path = os.path.join(output_dir, f"{os.path.splitext(bf_file.name)[0]}_All_Datasets.xlsx")
