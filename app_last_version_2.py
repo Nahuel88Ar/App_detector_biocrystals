@@ -545,22 +545,29 @@ if st.session_state.script1_done:
 if st.session_state.script1_results:
     st.header("📦 Results")
 
-    for result1 in st.session_state.script1_results:
+    for idx, result1 in enumerate(st.session_state.script1_results):
         st.subheader(f"📁 {result1['bf_name']}")
 
-        # Only show images if keys exist
         if "annotated_image_path" in result1 and "overlap_path" in result1:
             st.image(result1["annotated_image_path"], caption="Detections crystals")
             st.image(result1["overlap_path"], caption="Correlation")
 
             with open(result1["excel_path"], "rb") as f1:
-                st.download_button("📊 Download Dataset", f1, file_name=os.path.basename(result1["excel_path"]), key=f"download_button_{os.path.basename(result1['excel_path'])}")
-        
-        # If it's the summary file
+                st.download_button(
+                    "📊 Download Dataset",
+                    f1,
+                    file_name=os.path.basename(result1["excel_path"]),
+                    key=f"download_button_{idx}_{os.path.basename(result1['excel_path'])}"
+                )
+
         if "excel_path_2" in result1:
             with open(result1["excel_path_2"], "rb") as f2:
-                st.download_button("📊 Download Summary Plot", f2, file_name=os.path.basename(result1["excel_path_2"]), key="download_summary_button")
-
+                st.download_button(
+                    "📊 Download Summary Plot",
+                    f2,
+                    file_name=os.path.basename(result1["excel_path_2"]),
+                    key=f"download_summary_button_{idx}"
+                )
 #-----------------------------------------------------------------------------------------------------------------------------------
 
 # Session State Initialization
