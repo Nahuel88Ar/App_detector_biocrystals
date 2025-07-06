@@ -570,6 +570,8 @@ if st.button("Areas"):
 if st.session_state.script2_done:
     st.write("🔄 Starting batch processing...")
     all_output_files = []
+    # Placeholder for storing row data to summarize in Excel or logs
+    summary_rows = []
 
     for bf_file, pl_file in zip(bf_files, pl_files):
         
