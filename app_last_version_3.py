@@ -875,7 +875,7 @@ if st.session_state.script2_done:
             })
         # Save session result
         st.session_state.script2_results.append({
-            "bf_name": bf_file.name,
+            "bf_name": os.path.splitext(bf_file.name)[0],
             "excel_path": grouped_xlsx_path,
             "annotated_image_path": annotated_image_path,
             "overlap_path": overlap_path,
