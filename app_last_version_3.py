@@ -741,6 +741,7 @@ if st.session_state.script2_done:
         total_cells = region_area_df["Region_Label"].count()
         region_area_df.loc["Total Area"] = ["", "Total Area", region_area_df["Region_Area (µm²)"].sum()]
         region_area_df.loc["Total Cells"] = ["", "Total Cells", total_cells]
+        total_area = region_area_df["Region_Area (µm²)"].sum()
 
         excel_path = os.path.join(output_dir, f"{os.path.splitext(bf_file.name)[0]}_Region_Area.xlsx")
         region_area_df.to_excel(excel_path, index=False)
