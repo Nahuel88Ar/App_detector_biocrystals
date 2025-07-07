@@ -527,10 +527,10 @@ if st.session_state.script1_done:
     st.session_state.script1_results.append({
         "bf_name": bf_file.name,
         #"excel_path": grouped_xlsx_path,
-        #"annotated_image_path": annotated_image_path,
-        #"overlap_path": overlap_path,
-        #"hist_A_path": hist_path_A,
-        #"hist_B_path": hist_path_B,
+        "annotated_image_path": annotated_image_path,
+        "overlap_path": overlap_path,
+        "hist_A_path": hist_path_A,
+        "hist_B_path": hist_path_B,
         "excel_path_2": excel_path_2
     })
 
